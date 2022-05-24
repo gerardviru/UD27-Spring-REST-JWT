@@ -1,0 +1,31 @@
+CREATE TABLE cajeros (
+codigo_cajero int AUTO_INCREMENT PRIMARY KEY, 
+nom_apels VARCHAR(255) NOT NULL
+);
+
+
+CREATE TABLE productos (
+codigo_producto int AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(100),
+precio int NOT NULL
+);
+
+
+CREATE TABLE maquina_resgistradora (
+id_maquina int AUTO_INCREMENT PRIMARY KEY, 
+piso int NOT NULL
+);
+
+
+CREATE TABLE venta (
+codigo_cajero int NOT NULL,
+codigo_producto int NOT NULL, 
+id_maquina int NOT NULL,
+PRIMARY KEY (codigo_cajero, codigo_producto, id_maquina),
+FOREIGN KEY (codigo_cajero) REFERENCES cajeros(codigo_cajero)
+ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (codigo_producto) REFERENCES productos(codigo_producto)
+ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (id_maquina) REFERENCES maquina_resgistradora(id_maquina)
+ON DELETE CASCADE ON UPDATE CASCADE
+);
